@@ -1,8 +1,8 @@
 import promisify from './promisify';
+import unlinkIfExists from './unlinkIfExists';
 import {
   readFile,
   writeFile,
-  unlink,
 } from 'fs';
 import {
   v1 as uuid,
@@ -15,7 +15,6 @@ import {
 } from '../cli/constants';
 
 const pmkdirp = promisify(mkdirp);
-const punlink = promisify(unlink);
 const preadFile = promisify(readFile);
 const pwriteFile = promisify(writeFile);
 
@@ -30,7 +29,7 @@ async function getSocket({
     replacement: '__',
   }));
   if (server) {
-    await punlink(file);
+    await unlinkIfExists(file);
   }
   if (process.platform === 'win32') {
     // windows uses named pipes which have
