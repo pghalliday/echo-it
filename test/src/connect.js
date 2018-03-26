@@ -30,6 +30,7 @@ describe('connect', () => {
     await listen(await getSocket({
       workingDir,
       name,
+      server: true,
     }));
     echo = await connect({
       workingDir,
