@@ -2,7 +2,13 @@ import {createServer} from 'net';
 import promisify from './utils/promisify';
 import getSocket from './utils/socket';
 
-export default async function listen({workingDir, name, out}) {
+async function listen({
+  out,
+  workingDir,
+  name,
+}) {
+  // istanbul ignore next
+  out = out || process.stdout;
   const server = createServer((client) => {
     client.on('data', out.write.bind(out));
   });
@@ -15,3 +21,5 @@ export default async function listen({workingDir, name, out}) {
   }));
   return _close;
 }
+
+export default listen;

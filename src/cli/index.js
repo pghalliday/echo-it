@@ -20,9 +20,7 @@ module.exports = function cli(argv) {
     process.stdout.write(help());
     process.exit(1);
   }
-  return listen(Object.assign({}, opts, {
-    out: process.stdout,
-  }))
+  return listen(opts)
   .catch((error) => {
     console.error(error.stack);
   });
