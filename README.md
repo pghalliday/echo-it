@@ -22,7 +22,7 @@ echo-it myChannel
 
 Or in javascript
 
-```
+```javascript
 const echoIt = require('echo-it');
 await echoIt.listen({
   name: 'myChannel',
