@@ -1,0 +1,69 @@
+{
+  "name": "echo-it",
+  "version": "1.0.0",
+  "description": "Named echo servers for targeting messages",
+  "main": "lib/index.js",
+  "bin": "bin/index.js",
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "cliclopts": "^1.1.1",
+    "lodash": "^4.17.5",
+    "minimist": "^1.2.0",
+    "mkdirp": "^0.5.1",
+    "sanitize-filename": "^1.6.1"
+  },
+  "devDependencies": {
+    "alarmist": "^1.0.26",
+    "alarmist-npm": "^1.0.6",
+    "babel-cli": "^6.26.0",
+    "babel-plugin-istanbul": "^4.1.5",
+    "babel-preset-env": "^1.6.1",
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "chokidar-cli": "^1.2.0",
+    "coveralls": "^3.0.0",
+    "cross-env": "^5.1.4",
+    "eslint": "^4.19.1",
+    "eslint-config-google": "^0.9.1",
+    "mocha": "^5.0.5",
+    "npm-run-all": "^4.1.2",
+    "nyc": "^11.6.0",
+    "rimraf": "^2.6.2",
+    "sinon": "^4.4.8",
+    "sinon-chai": "^3.0.0"
+  },
+  "scripts": {
+    "cmd:lint": "eslint .",
+    "cmd:test": "cross-env NODE_ENV=test nyc mocha",
+    "cmd:coverage": "nyc report -r text && nyc check-coverage",
+    "cmd:build": "rimraf lib && babel src --out-dir lib",
+    "cmd:coveralls": "cat ./coverage/lcov.info | coveralls",
+    "test": "run-s cmd:lint cmd:test cmd:coverage",
+    "build": "run-s test cmd:build",
+    "ci": "run-s build cmd:coveralls",
+    "alarmist:lint": "chokidar \"+(src|test)/**/*\" -c \"alarmist-npm cmd:lint\"",
+    "alarmist:test": "chokidar \"+(src|test)/**/*\" -c \"alarmist-npm cmd:test\"",
+    "alarmist:coverage": "chokidar \"coverage/lcov.info\" -c \"alarmist-npm cmd:coverage\"",
+    "alarmist:build": "chokidar \"src/**/*\" -c \"alarmist-npm cmd:build\"",
+    "alarmist:echo-it": "alarmist-job -m echo-it node ./bin/index.js test",
+    "alarmist:echo": "alarmist-job -s echo node ./echo-test.js",
+    "start": "alarmist-monitor run-p alarmist:lint alarmist:test alarmist:coverage alarmist:build alarmist:echo-it alarmist:echo",
+    "prepublish": "run-s cmd:build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pghalliday/echo-it.git"
+  },
+  "keywords": [
+    "echo",
+    "log",
+    "server",
+    "named"
+  ],
+  "author": "Peter Halliday <pghalliday@gmail.com> (https://pghalliday.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pghalliday/echo-it/issues"
+  },
+  "homepage": "https://github.com/pghalliday/echo-it#readme"
+}
