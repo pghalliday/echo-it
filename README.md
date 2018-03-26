@@ -1,7 +1,7 @@
 # echo-it
 
 [![Build Status](https://travis-ci.org/pghalliday/echo-it.svg?branch=master)](https://travis-ci.org/pghalliday/echo-it)
-[![Build status](https://ci.appveyor.com/api/projects/status/u43yda75054tdv5l/branch/master?svg=true)](https://ci.appveyor.com/project/pghalliday/echo-it/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/uccubuhahur938gh/branch/master?svg=true)](https://ci.appveyor.com/project/pghalliday/echo-it/branch/master)
 [![Coverage Status](https://coveralls.io/repos/github/pghalliday/echo-it/badge.svg?branch=master)](https://coveralls.io/github/pghalliday/echo-it?branch=master)
 
 Named echo servers for targeting messages.
